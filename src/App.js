@@ -51,11 +51,18 @@ function App() {
     setProvider(myProvider);
   }, [signer]);
 
+  if (account) {
   contracts.Main = new ethers.Contract(
     ContractAddr.Main,
     BigNFTABI,
     signer
-  );
+  ); } else {
+    contracts.Main = new ethers.Contract(
+      ContractAddr.Main,
+      BigNFTABI,
+      defaultProvider
+    ); 
+  }
 
   useEffect(() => {
     setLoading(false);
